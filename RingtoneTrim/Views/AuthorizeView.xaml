@@ -1,0 +1,72 @@
+﻿<phone:PhoneApplicationPage x:Class="RingtoneTrim.Views.AuthorizeView"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                            xmlns:c4f="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
+                            xmlns:c4fConverter="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
+                            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                            xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+                            xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+                            xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+                            d:DesignHeight="768"
+                            d:DesignWidth="480"
+                            FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            FontSize="{StaticResource PhoneFontSizeNormal}"
+                            Foreground="{StaticResource PhoneForegroundBrush}"
+                            Opacity="0.99"
+                            Orientation="Portrait"
+                            shell:SystemTray.IsVisible="True"
+                            SupportedOrientations="Portrait"
+                            mc:Ignorable="d">
+
+    <!--  LayoutRoot is the root grid where all page content is placed  -->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <c4f:ProgressOverlay x:Name="ProgressOverlay"
+                             Grid.Row="1"
+                             Background="Transparent">
+            <c4f:ProgressOverlay.Resources>
+                <c4fConverter:VisibilityToBooleanConverter x:Key="VisToBoolConverter" />
+            </c4f:ProgressOverlay.Resources>
+            <c4f:ProgressOverlay.Content>
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center"
+                               FontSize="{StaticResource PhoneFontSizeLarge}"
+                               Foreground="#1BA1E2">
+                        加载中
+                    </TextBlock>
+                    <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ElementName=progressOverlay, Path=Visibility, Converter={StaticResource VisToBoolConverter}}" />
+                </StackPanel>
+            </c4f:ProgressOverlay.Content>
+        </c4f:ProgressOverlay>
+
+        <Border Grid.Row="0"
+                Background="{StaticResource PhoneAccentBrush}">
+            <TextBlock x:Name="ApplicationTitle"
+                Margin="24,12,0,12"
+                       Style="{StaticResource PhoneTextNormalStyle}"
+                       Text="土瓜铃声助手" />
+        </Border>
+
+        <!--  ContentPanel - place additional content here  -->
+        <phone:WebBrowser x:Name="AuthorizeWB" Grid.Row="1" />
+    </Grid>
+
+    <!--  Sample code showing usage of ApplicationBar  -->
+    <!--
+        <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+        <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+        <shell:ApplicationBar.MenuItems>
+        <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+        <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+        </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+        </phone:PhoneApplicationPage.ApplicationBar>
+    -->
+
+</phone:PhoneApplicationPage>
